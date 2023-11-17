@@ -28,7 +28,7 @@ namespace BL
                         cmd.Parameters.AddWithValue("@Autor", biblioteca.Autor);
                         cmd.Parameters.AddWithValue("@AñoPublicacion", biblioteca.AñoPublicacion);
                         cmd.Parameters.AddWithValue("@Genero", biblioteca.Genero);
-                        cmd.Parameters.AddWithValue("@Precio", biblioteca.Precio);
+                        cmd.Parameters.AddWithValue("@Precio", biblioteca.Precio); 
 
                         // Asegúrate de manejar la imagen adecuadamente, asumiendo que biblioteca.Imagen es un byte[]
                         SqlParameter imagenParam = new SqlParameter("@Imagen", SqlDbType.VarBinary);
