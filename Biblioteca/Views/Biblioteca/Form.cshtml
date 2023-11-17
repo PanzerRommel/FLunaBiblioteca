@@ -45,10 +45,11 @@
                     @Html.LabelFor(model => model.AñoPublicacion)
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon"><i class="bi bi-calendar2-week"></i></span>
-                        @Html.TextBoxFor(model => model.AñoPublicacion, new { @class = "form-control", @id = "txtAñoPublicacion", placeholder = "DD-MM-AAAA" })
+                        @Html.TextBoxFor(model => model.AñoPublicacion, "{0:yyyy-MM-dd}", new { @class = "form-control datepicker", @id = "txtAñoPublicacion", placeholder = "AAAA-MM-DD", @data_val_date = "El campo Año de Publicación debe tener el formato AAAA-MM-DD" })
                     </div>
                     @Html.ValidationMessageFor(model => model.AñoPublicacion)
                 </div>
+
 
 
                 <div class="form-group col-md-4 col-12 col-sm-6">
@@ -74,7 +75,7 @@
                         @Html.ActionLink("Regresar", "GetAll", "Biblioteca", htmlAttributes: new { @class = "btn btn-danger" })
                     </div>
                 </div>
-            } 
+            }
         </div>
     </div>
 </div>
@@ -83,13 +84,14 @@
 {
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
     <script type="text/javascript">
         $(document).ready(function () {
-            
+
             function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -100,7 +102,18 @@
                 }
             }
 
-            
+            $(function () {
+                $(".datepicker").datepicker({
+                    dateFormat: 'yy-mm-dd', // Formato de fecha deseado
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: '1900:2030', // Rango de años deseado
+                    onSelect: function (dateText) {
+                        // Puedes agregar lógica adicional aquí si es necesario
+                    }
+                });
+            });
+
         });
     </script>
 }
