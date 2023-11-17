@@ -53,7 +53,7 @@ namespace BL
             }
             catch (Exception ex)
             {
-                result.Correct = false;
+                result.Correct = false; 
                 result.ErrorMessage = ex.Message;
             }
 
