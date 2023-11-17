@@ -1,0 +1,106 @@
+﻿@model ML.Biblioteca
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Formulario para agregar un nuevo libro</h2>
+<div class="row">
+    <div class="container">
+        <div class="col-md-12">
+            <h2>Libros</h2>
+            <h5>Ingrese los datos del Libro:</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @* Crea un salto de línea *@
+            <hr />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "Biblioteca", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.IdLibro)
+                </div>
+
+                <div class="form-group col-md-4 col-12 col-sm-6">
+                    @Html.LabelFor(model => model.Titulo)
+                    @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control", @id = "txtTitulo" })
+                    @Html.ValidationMessageFor(model => model.Titulo)
+                </div>
+
+                <div class="form-group col-md-4 col-12 col-sm-6">
+                    @Html.LabelFor(model => model.Autor)
+                    @Html.TextBoxFor(model => model.Autor, new { @class = "form-control", @id = "txtAutor" })
+                    @Html.ValidationMessageFor(model => model.Autor)
+                </div>
+
+                <div class="col-md-3 col-12 col-sm-6">
+                    @Html.LabelFor(model => model.AñoPublicacion)
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon"><i class="bi bi-calendar2-week"></i></span>
+                        @Html.TextBoxFor(model => model.AñoPublicacion, new { @class = "form-control", @id = "txtAñoPublicacion", placeholder = "DD-MM-AAAA" })
+                    </div>
+                    @Html.ValidationMessageFor(model => model.AñoPublicacion)
+                </div>
+
+
+                <div class="form-group col-md-4 col-12 col-sm-6">
+                    @Html.LabelFor(model => model.Genero)
+                    @Html.TextBoxFor(model => model.Genero, new { @class = "form-control", @id = "txtGenero" })
+                    @Html.ValidationMessageFor(model => model.Genero)
+                </div>
+
+                <div class="form-group col-md-4 col-12 col-sm-6">
+                    @Html.LabelFor(model => model.Precio)
+                    @Html.TextBoxFor(model => model.Precio, new { @class = "form-control", @id = "txtPrecio" })
+                    @Html.ValidationMessageFor(model => model.Precio)
+                </div>
+
+                <div class="form-group">
+                    <label for="imagenFile">Imagen</label>
+                    <input type="file" id="imagenFile" name="imagenFile">
+                </div>
+
+                <div class="col">
+                    <div class="col-md-3">
+                        <input type="submit" value="Guardar" class="btn btn-success" />
+                        @Html.ActionLink("Regresar", "GetAll", "Biblioteca", htmlAttributes: new { @class = "btn btn-danger" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#Img').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            
+        });
+    </script>
+}
